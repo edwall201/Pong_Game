@@ -1,0 +1,32 @@
+module pong_renderer_tb;
+    reg  [9:0] x, y;
+    reg  [9:0] ball_x, ball_y, paddleL_y, paddleR_y;
+    wire [23:0] color;
+
+    pong_renderer dut (
+        .x(x),
+        .y(y),
+        .ball_x(ball_x),
+        .ball_y(ball_y),
+        .paddleL_y(paddleL_y),
+        .paddleR_y(paddleR_y),
+        .out_color(color)
+    );
+
+    initial begin
+        ball_x    = 10'd10;
+        ball_y    = 10'd20;
+        paddleL_y = 10'd100;
+        paddleR_y = 10'd200;
+
+        // test a pixel inside the ball
+        x = 10'd12; y = 10'd22;
+        #1 $display("color at ball: %h", color);
+
+        // test a pixel outside everything
+        x = 10'd300; y = 10'd300;
+        #1 $display("color at background: %h", color);
+
+        $stop;
+    end
+endmodule

@@ -2,17 +2,13 @@ module video_sync_generator(reset,
                             vga_clk,
                             blank_n,
                             HS,
-                            VS,
-									 x,
-									 y);
+                            VS);
                             
 input reset;
 input vga_clk;
 output reg blank_n;
 output reg HS;
 output reg VS;
-output [9:0] x;
-output [9:0] y;
 ///////////////////
 /*
 --VGA Timing
@@ -63,7 +59,7 @@ reg [10:0] h_cnt;
 reg [9:0]  v_cnt;
 wire cHD,cVD,cDEN,hori_valid,vert_valid;
 ///////
-always@(negedge vga_clk, posedge reset)
+always@(negedge vga_clk,posedge reset)
 begin
   if (reset)
   begin
@@ -85,22 +81,19 @@ begin
     end
 end
 /////
-assign cHD = (h_cnt<H_sync_cycle) ? 1'b0 : 1'b1;
-assign cVD = (v_cnt<V_sync_cycle) ? 1'b0 : 1'b1;
+assign cHD = (h_cnt<H_sync_cycle)?1'b0:1'b1;
+assign cVD = (v_cnt<V_sync_cycle)?1'b0:1'b1;
 
-assign hori_valid = (h_cnt<(hori_line-hori_front) && h_cnt>=hori_back) ? 1'b1 : 1'b0;
-assign vert_valid = (v_cnt<(vert_line-vert_front) && v_cnt>=vert_back) ? 1'b1 : 1'b0;
+assign hori_valid = (h_cnt<(hori_line-hori_front)&& h_cnt>=hori_back)?1'b1:1'b0;
+assign vert_valid = (v_cnt<(vert_line-vert_front)&& v_cnt>=vert_back)?1'b1:1'b0;
 
 assign cDEN = hori_valid && vert_valid;
 
-assign x = (hori_valid && vert_valid) ? (h_cnt - hori_back) : 10'd0;
-assign y = (hori_valid && vert_valid) ? (v_cnt - vert_back) : 10'd0;
-
 always@(negedge vga_clk)
 begin
-  HS <= cHD;
-  VS <= cVD;
-  blank_n <= cDEN;
+  HS<=cHD;
+  VS<=cVD;
+  blank_n<=cDEN;
 end
 
 endmodule

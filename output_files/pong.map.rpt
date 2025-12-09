@@ -1,0 +1,693 @@
+Analysis & Synthesis report for pong
+Tue Dec 09 18:34:55 2025
+Quartus Prime Version 17.0.0 Build 595 04/25/2017 SJ Lite Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Analysis & Synthesis Summary
+  3. Analysis & Synthesis Settings
+  4. Parallel Compilation
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. State Machine - |pong|PS2_Interface:kbd|PS2_Controller:PS2|s_ps2_transceiver
+  9. State Machine - |pong|PS2_Interface:kbd|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|s_ps2_transmitter
+ 10. State Machine - |pong|PS2_Interface:kbd|PS2_Controller:PS2|Altera_UP_PS2_Data_In:PS2_Data_In|s_ps2_receiver
+ 11. Registers Removed During Synthesis
+ 12. Removed Registers Triggering Further Register Optimizations
+ 13. General Register Statistics
+ 14. Inverted Register Statistics
+ 15. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 16. Parameter Settings for User Entity Instance: vga_controller:u_vga|video_sync_generator:LTM_ins
+ 17. Parameter Settings for User Entity Instance: PS2_Interface:kbd|PS2_Controller:PS2
+ 18. Parameter Settings for User Entity Instance: PS2_Interface:kbd|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out
+ 19. Parameter Settings for User Entity Instance: paddle_control:paddles
+ 20. Port Connectivity Checks: "PS2_Interface:kbd|PS2_Controller:PS2"
+ 21. Port Connectivity Checks: "PS2_Interface:kbd"
+ 22. Post-Synthesis Netlist Statistics for Top Partition
+ 23. Elapsed Time Per Partition
+ 24. Analysis & Synthesis Messages
+ 25. Analysis & Synthesis Suppressed Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2017  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel MegaCore Function License Agreement, or other 
+applicable license agreement, including, without limitation, 
+that your use is for the sole purpose of programming logic 
+devices manufactured by Intel and sold by Intel or its 
+authorized distributors.  Please refer to the applicable 
+agreement for further details.
+
+
+
++----------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                     ;
++------------------------------------+---------------------------------------------+
+; Analysis & Synthesis Status        ; Successful - Tue Dec 09 18:34:55 2025       ;
+; Quartus Prime Version              ; 17.0.0 Build 595 04/25/2017 SJ Lite Edition ;
+; Revision Name                      ; pong                                        ;
+; Top-level Entity Name              ; pong                                        ;
+; Family                             ; Cyclone IV E                                ;
+; Total logic elements               ; 410                                         ;
+;     Total combinational functions  ; 400                                         ;
+;     Dedicated logic registers      ; 116                                         ;
+; Total registers                    ; 116                                         ;
+; Total pins                         ; 43                                          ;
+; Total virtual pins                 ; 0                                           ;
+; Total memory bits                  ; 0                                           ;
+; Embedded Multiplier 9-bit elements ; 0                                           ;
+; Total PLLs                         ; 0                                           ;
++------------------------------------+---------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Settings                                                                                        ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+; Option                                                                     ; Setting            ; Default Value      ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+; Device                                                                     ; EP4CE115F29C7      ;                    ;
+; Top-level entity name                                                      ; pong               ; pong               ;
+; Family name                                                                ; Cyclone IV E       ; Cyclone V          ;
+; Use smart compilation                                                      ; Off                ; Off                ;
+; Enable parallel Assembler and TimeQuest Timing Analyzer during compilation ; On                 ; On                 ;
+; Enable compact report table                                                ; Off                ; Off                ;
+; Restructure Multiplexers                                                   ; Auto               ; Auto               ;
+; Create Debugging Nodes for IP Cores                                        ; Off                ; Off                ;
+; Preserve fewer node names                                                  ; On                 ; On                 ;
+; OpenCore Plus hardware evaluation                                          ; Enable             ; Enable             ;
+; Verilog Version                                                            ; Verilog_2001       ; Verilog_2001       ;
+; VHDL Version                                                               ; VHDL_1993          ; VHDL_1993          ;
+; State Machine Processing                                                   ; Auto               ; Auto               ;
+; Safe State Machine                                                         ; Off                ; Off                ;
+; Extract Verilog State Machines                                             ; On                 ; On                 ;
+; Extract VHDL State Machines                                                ; On                 ; On                 ;
+; Ignore Verilog initial constructs                                          ; Off                ; Off                ;
+; Iteration limit for constant Verilog loops                                 ; 5000               ; 5000               ;
+; Iteration limit for non-constant Verilog loops                             ; 250                ; 250                ;
+; Add Pass-Through Logic to Inferred RAMs                                    ; On                 ; On                 ;
+; Infer RAMs from Raw Logic                                                  ; On                 ; On                 ;
+; Parallel Synthesis                                                         ; On                 ; On                 ;
+; DSP Block Balancing                                                        ; Auto               ; Auto               ;
+; NOT Gate Push-Back                                                         ; On                 ; On                 ;
+; Power-Up Don't Care                                                        ; On                 ; On                 ;
+; Remove Redundant Logic Cells                                               ; Off                ; Off                ;
+; Remove Duplicate Registers                                                 ; On                 ; On                 ;
+; Ignore CARRY Buffers                                                       ; Off                ; Off                ;
+; Ignore CASCADE Buffers                                                     ; Off                ; Off                ;
+; Ignore GLOBAL Buffers                                                      ; Off                ; Off                ;
+; Ignore ROW GLOBAL Buffers                                                  ; Off                ; Off                ;
+; Ignore LCELL Buffers                                                       ; Off                ; Off                ;
+; Ignore SOFT Buffers                                                        ; On                 ; On                 ;
+; Limit AHDL Integers to 32 Bits                                             ; Off                ; Off                ;
+; Optimization Technique                                                     ; Balanced           ; Balanced           ;
+; Carry Chain Length                                                         ; 70                 ; 70                 ;
+; Auto Carry Chains                                                          ; On                 ; On                 ;
+; Auto Open-Drain Pins                                                       ; On                 ; On                 ;
+; Perform WYSIWYG Primitive Resynthesis                                      ; Off                ; Off                ;
+; Auto ROM Replacement                                                       ; On                 ; On                 ;
+; Auto RAM Replacement                                                       ; On                 ; On                 ;
+; Auto DSP Block Replacement                                                 ; On                 ; On                 ;
+; Auto Shift Register Replacement                                            ; Auto               ; Auto               ;
+; Allow Shift Register Merging across Hierarchies                            ; Auto               ; Auto               ;
+; Auto Clock Enable Replacement                                              ; On                 ; On                 ;
+; Strict RAM Replacement                                                     ; Off                ; Off                ;
+; Allow Synchronous Control Signals                                          ; On                 ; On                 ;
+; Force Use of Synchronous Clear Signals                                     ; Off                ; Off                ;
+; Auto RAM Block Balancing                                                   ; On                 ; On                 ;
+; Auto RAM to Logic Cell Conversion                                          ; Off                ; Off                ;
+; Auto Resource Sharing                                                      ; Off                ; Off                ;
+; Allow Any RAM Size For Recognition                                         ; Off                ; Off                ;
+; Allow Any ROM Size For Recognition                                         ; Off                ; Off                ;
+; Allow Any Shift Register Size For Recognition                              ; Off                ; Off                ;
+; Use LogicLock Constraints during Resource Balancing                        ; On                 ; On                 ;
+; Ignore translate_off and synthesis_off directives                          ; Off                ; Off                ;
+; Timing-Driven Synthesis                                                    ; On                 ; On                 ;
+; Report Parameter Settings                                                  ; On                 ; On                 ;
+; Report Source Assignments                                                  ; On                 ; On                 ;
+; Report Connectivity Checks                                                 ; On                 ; On                 ;
+; Ignore Maximum Fan-Out Assignments                                         ; Off                ; Off                ;
+; Synchronization Register Chain Length                                      ; 2                  ; 2                  ;
+; PowerPlay Power Optimization During Synthesis                              ; Normal compilation ; Normal compilation ;
+; HDL message level                                                          ; Level2             ; Level2             ;
+; Suppress Register Optimization Related Messages                            ; Off                ; Off                ;
+; Number of Removed Registers Reported in Synthesis Report                   ; 5000               ; 5000               ;
+; Number of Swept Nodes Reported in Synthesis Report                         ; 5000               ; 5000               ;
+; Number of Inverted Registers Reported in Synthesis Report                  ; 100                ; 100                ;
+; Clock MUX Protection                                                       ; On                 ; On                 ;
+; Auto Gated Clock Conversion                                                ; Off                ; Off                ;
+; Block Design Naming                                                        ; Auto               ; Auto               ;
+; SDC constraint protection                                                  ; Off                ; Off                ;
+; Synthesis Effort                                                           ; Auto               ; Auto               ;
+; Shift Register Replacement - Allow Asynchronous Clear Signal               ; On                 ; On                 ;
+; Pre-Mapping Resynthesis Optimization                                       ; Off                ; Off                ;
+; Analysis & Synthesis Message Level                                         ; Medium             ; Medium             ;
+; Disable Register Merging Across Hierarchies                                ; Auto               ; Auto               ;
+; Resource Aware Inference For Block RAM                                     ; On                 ; On                 ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+
+
++------------------------------------------+
+; Parallel Compilation                     ;
++----------------------------+-------------+
+; Processors                 ; Number      ;
++----------------------------+-------------+
+; Number detected on machine ; 16          ;
+; Maximum allowed            ; 16          ;
+;                            ;             ;
+; Average used               ; 1.00        ;
+; Maximum used               ; 16          ;
+;                            ;             ;
+; Usage by Processor         ; % Time Used ;
+;     Processor 1            ; 100.0%      ;
+;     Processor 2            ;   0.0%      ;
+;     Processors 3-16        ;   0.0%      ;
++----------------------------+-------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                ;
++----------------------------------+-----------------+------------------------+---------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type              ; File Name with Absolute Path                                  ; Library ;
++----------------------------------+-----------------+------------------------+---------------------------------------------------------------+---------+
+; pong.v                           ; yes             ; User Verilog HDL File  ; C:/Users/leowe/Downloads/Labs/PC6/pong.v                      ;         ;
+; vga_controller.v                 ; yes             ; User Verilog HDL File  ; C:/Users/leowe/Downloads/Labs/PC6/vga_controller.v            ;         ;
+; video_sync_generator.v           ; yes             ; User Verilog HDL File  ; C:/Users/leowe/Downloads/Labs/PC6/video_sync_generator.v      ;         ;
+; pong_renderer.v                  ; yes             ; User Verilog HDL File  ; C:/Users/leowe/Downloads/Labs/PC6/pong_renderer.v             ;         ;
+; ball_motion.v                    ; yes             ; User Verilog HDL File  ; C:/Users/leowe/Downloads/Labs/PC6/ball_motion.v               ;         ;
+; paddle_control.v                 ; yes             ; User Verilog HDL File  ; C:/Users/leowe/Downloads/Labs/PC6/paddle_control.v            ;         ;
+; PS2_Controller.v                 ; yes             ; User Verilog HDL File  ; C:/Users/leowe/Downloads/Labs/PC6/PS2_Controller.v            ;         ;
+; Altera_UP_PS2_Data_In.v          ; yes             ; User Verilog HDL File  ; C:/Users/leowe/Downloads/Labs/PC6/Altera_UP_PS2_Data_In.v     ;         ;
+; Altera_UP_PS2_Command_Out.v      ; yes             ; User Verilog HDL File  ; C:/Users/leowe/Downloads/Labs/PC6/Altera_UP_PS2_Command_Out.v ;         ;
+; PS2_Interface.v                  ; yes             ; User Verilog HDL File  ; C:/Users/leowe/Downloads/Labs/PC6/PS2_Interface.v             ;         ;
++----------------------------------+-----------------+------------------------+---------------------------------------------------------------+---------+
+
+
++------------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary                ;
++---------------------------------------------+--------------+
+; Resource                                    ; Usage        ;
++---------------------------------------------+--------------+
+; Estimated Total logic elements              ; 410          ;
+;                                             ;              ;
+; Total combinational functions               ; 400          ;
+; Logic element usage by number of LUT inputs ;              ;
+;     -- 4 input functions                    ; 102          ;
+;     -- 3 input functions                    ; 115          ;
+;     -- <=2 input functions                  ; 183          ;
+;                                             ;              ;
+; Logic elements by mode                      ;              ;
+;     -- normal mode                          ; 206          ;
+;     -- arithmetic mode                      ; 194          ;
+;                                             ;              ;
+; Total registers                             ; 116          ;
+;     -- Dedicated logic registers            ; 116          ;
+;     -- I/O registers                        ; 0            ;
+;                                             ;              ;
+; I/O pins                                    ; 43           ;
+;                                             ;              ;
+; Embedded Multiplier 9-bit elements          ; 0            ;
+;                                             ;              ;
+; Maximum fan-out node                        ; KEY[0]~input ;
+; Maximum fan-out                             ; 103          ;
+; Total fan-out                               ; 1559         ;
+; Average fan-out                             ; 2.58         ;
++---------------------------------------------+--------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                                           ;
++----------------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+------------------------------------------------------------------------------+-----------------------+--------------+
+; Compilation Hierarchy Node                   ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                          ; Entity Name           ; Library Name ;
++----------------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+------------------------------------------------------------------------------+-----------------------+--------------+
+; |pong                                        ; 400 (1)             ; 116 (1)                   ; 0           ; 0            ; 0       ; 0         ; 43   ; 0            ; |pong                                                                        ; pong                  ; work         ;
+;    |PS2_Interface:kbd|                       ; 32 (0)              ; 30 (0)                    ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |pong|PS2_Interface:kbd                                                      ; PS2_Interface         ; work         ;
+;       |PS2_Controller:PS2|                   ; 32 (7)              ; 30 (5)                    ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |pong|PS2_Interface:kbd|PS2_Controller:PS2                                   ; PS2_Controller        ; work         ;
+;          |Altera_UP_PS2_Data_In:PS2_Data_In| ; 25 (25)             ; 25 (25)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |pong|PS2_Interface:kbd|PS2_Controller:PS2|Altera_UP_PS2_Data_In:PS2_Data_In ; Altera_UP_PS2_Data_In ; work         ;
+;    |ball_motion:motion|                      ; 79 (79)             ; 40 (40)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |pong|ball_motion:motion                                                     ; ball_motion           ; work         ;
+;    |paddle_control:paddles|                  ; 85 (85)             ; 18 (18)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |pong|paddle_control:paddles                                                 ; paddle_control        ; work         ;
+;    |vga_controller:u_vga|                    ; 203 (14)            ; 27 (3)                    ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |pong|vga_controller:u_vga                                                   ; vga_controller        ; work         ;
+;       |pong_renderer:renderer|               ; 110 (110)           ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |pong|vga_controller:u_vga|pong_renderer:renderer                            ; pong_renderer         ; work         ;
+;       |video_sync_generator:LTM_ins|         ; 79 (79)             ; 24 (24)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |pong|vga_controller:u_vga|video_sync_generator:LTM_ins                      ; video_sync_generator  ; work         ;
++----------------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+------------------------------------------------------------------------------+-----------------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
+Encoding Type:  One-Hot
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |pong|PS2_Interface:kbd|PS2_Controller:PS2|s_ps2_transceiver                                                                                                                                                                                 ;
++--------------------------------------------+--------------------------------------------+-------------------------------------------+---------------------------------------+------------------------------------+-------------------------------------------+
+; Name                                       ; s_ps2_transceiver.PS2_STATE_3_END_TRANSFER ; s_ps2_transceiver.PS2_STATE_2_COMMAND_OUT ; s_ps2_transceiver.PS2_STATE_1_DATA_IN ; s_ps2_transceiver.PS2_STATE_0_IDLE ; s_ps2_transceiver.PS2_STATE_4_END_DELAYED ;
++--------------------------------------------+--------------------------------------------+-------------------------------------------+---------------------------------------+------------------------------------+-------------------------------------------+
+; s_ps2_transceiver.PS2_STATE_0_IDLE         ; 0                                          ; 0                                         ; 0                                     ; 0                                  ; 0                                         ;
+; s_ps2_transceiver.PS2_STATE_1_DATA_IN      ; 0                                          ; 0                                         ; 1                                     ; 1                                  ; 0                                         ;
+; s_ps2_transceiver.PS2_STATE_2_COMMAND_OUT  ; 0                                          ; 1                                         ; 0                                     ; 1                                  ; 0                                         ;
+; s_ps2_transceiver.PS2_STATE_3_END_TRANSFER ; 1                                          ; 0                                         ; 0                                     ; 1                                  ; 0                                         ;
+; s_ps2_transceiver.PS2_STATE_4_END_DELAYED  ; 0                                          ; 0                                         ; 0                                     ; 1                                  ; 1                                         ;
++--------------------------------------------+--------------------------------------------+-------------------------------------------+---------------------------------------+------------------------------------+-------------------------------------------+
+
+
+Encoding Type:  One-Hot
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |pong|PS2_Interface:kbd|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|s_ps2_transmitter                                                                                                                                                                                                                                                                                                                              ;
++------------------------------------------------------+--------------------------------------------------+------------------------------------------------+-----------------------------------------------+-------------------------------------------------+---------------------------------------------+----------------------------------------------+------------------------------------------------------+------------------------------------+
+; Name                                                 ; s_ps2_transmitter.PS2_STATE_7_TRANSMISSION_ERROR ; s_ps2_transmitter.PS2_STATE_6_COMMAND_WAS_SENT ; s_ps2_transmitter.PS2_STATE_5_RECEIVE_ACK_BIT ; s_ps2_transmitter.PS2_STATE_4_TRANSMIT_STOP_BIT ; s_ps2_transmitter.PS2_STATE_3_TRANSMIT_DATA ; s_ps2_transmitter.PS2_STATE_2_WAIT_FOR_CLOCK ; s_ps2_transmitter.PS2_STATE_1_INITIATE_COMMUNICATION ; s_ps2_transmitter.PS2_STATE_0_IDLE ;
++------------------------------------------------------+--------------------------------------------------+------------------------------------------------+-----------------------------------------------+-------------------------------------------------+---------------------------------------------+----------------------------------------------+------------------------------------------------------+------------------------------------+
+; s_ps2_transmitter.PS2_STATE_0_IDLE                   ; 0                                                ; 0                                              ; 0                                             ; 0                                               ; 0                                           ; 0                                            ; 0                                                    ; 0                                  ;
+; s_ps2_transmitter.PS2_STATE_1_INITIATE_COMMUNICATION ; 0                                                ; 0                                              ; 0                                             ; 0                                               ; 0                                           ; 0                                            ; 1                                                    ; 1                                  ;
+; s_ps2_transmitter.PS2_STATE_2_WAIT_FOR_CLOCK         ; 0                                                ; 0                                              ; 0                                             ; 0                                               ; 0                                           ; 1                                            ; 0                                                    ; 1                                  ;
+; s_ps2_transmitter.PS2_STATE_3_TRANSMIT_DATA          ; 0                                                ; 0                                              ; 0                                             ; 0                                               ; 1                                           ; 0                                            ; 0                                                    ; 1                                  ;
+; s_ps2_transmitter.PS2_STATE_4_TRANSMIT_STOP_BIT      ; 0                                                ; 0                                              ; 0                                             ; 1                                               ; 0                                           ; 0                                            ; 0                                                    ; 1                                  ;
+; s_ps2_transmitter.PS2_STATE_5_RECEIVE_ACK_BIT        ; 0                                                ; 0                                              ; 1                                             ; 0                                               ; 0                                           ; 0                                            ; 0                                                    ; 1                                  ;
+; s_ps2_transmitter.PS2_STATE_6_COMMAND_WAS_SENT       ; 0                                                ; 1                                              ; 0                                             ; 0                                               ; 0                                           ; 0                                            ; 0                                                    ; 1                                  ;
+; s_ps2_transmitter.PS2_STATE_7_TRANSMISSION_ERROR     ; 1                                                ; 0                                              ; 0                                             ; 0                                               ; 0                                           ; 0                                            ; 0                                                    ; 1                                  ;
++------------------------------------------------------+--------------------------------------------------+------------------------------------------------+-----------------------------------------------+-------------------------------------------------+---------------------------------------------+----------------------------------------------+------------------------------------------------------+------------------------------------+
+
+
+Encoding Type:  One-Hot
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |pong|PS2_Interface:kbd|PS2_Controller:PS2|Altera_UP_PS2_Data_In:PS2_Data_In|s_ps2_receiver                                                                                                                            ;
++------------------------------------------+--------------------------------------+------------------------------------+------------------------------------------+---------------------------------+------------------------------------+
+; Name                                     ; s_ps2_receiver.PS2_STATE_3_PARITY_IN ; s_ps2_receiver.PS2_STATE_2_DATA_IN ; s_ps2_receiver.PS2_STATE_1_WAIT_FOR_DATA ; s_ps2_receiver.PS2_STATE_0_IDLE ; s_ps2_receiver.PS2_STATE_4_STOP_IN ;
++------------------------------------------+--------------------------------------+------------------------------------+------------------------------------------+---------------------------------+------------------------------------+
+; s_ps2_receiver.PS2_STATE_0_IDLE          ; 0                                    ; 0                                  ; 0                                        ; 0                               ; 0                                  ;
+; s_ps2_receiver.PS2_STATE_1_WAIT_FOR_DATA ; 0                                    ; 0                                  ; 1                                        ; 1                               ; 0                                  ;
+; s_ps2_receiver.PS2_STATE_2_DATA_IN       ; 0                                    ; 1                                  ; 0                                        ; 1                               ; 0                                  ;
+; s_ps2_receiver.PS2_STATE_3_PARITY_IN     ; 1                                    ; 0                                  ; 0                                        ; 1                               ; 0                                  ;
+; s_ps2_receiver.PS2_STATE_4_STOP_IN       ; 0                                    ; 0                                  ; 0                                        ; 1                               ; 1                                  ;
++------------------------------------------+--------------------------------------+------------------------------------+------------------------------------------+---------------------------------+------------------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                                                                                                                                                                              ;
++-------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------+
+; Register name                                                                                                                       ; Reason for Removal                                                                                        ;
++-------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------+
+; PS2_Interface:kbd|PS2_Controller:PS2|idle_counter[0..7]                                                                             ; Lost fanout                                                                                               ;
+; PS2_Interface:kbd|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|ps2_command[1..7]                                    ; Merged with PS2_Interface:kbd|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|ps2_command[0] ;
+; PS2_Interface:kbd|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|ps2_command[0]                                       ; Stuck at GND due to stuck port data_in                                                                    ;
+; ball_motion:motion|vy[0]                                                                                                            ; Stuck at VCC due to stuck port data_in                                                                    ;
+; ball_motion:motion|vx[0]                                                                                                            ; Stuck at GND due to stuck port data_in                                                                    ;
+; ball_motion:motion|ball_x[0]                                                                                                        ; Stuck at GND due to stuck port data_in                                                                    ;
+; ball_motion:motion|vy[1..8]                                                                                                         ; Merged with ball_motion:motion|vy[9]                                                                      ;
+; ball_motion:motion|vx[1]                                                                                                            ; Stuck at VCC due to stuck port data_in                                                                    ;
+; ball_motion:motion|vx[2..8]                                                                                                         ; Merged with ball_motion:motion|vx[9]                                                                      ;
+; ball_motion:motion|ball_y[9]                                                                                                        ; Stuck at GND due to stuck port data_in                                                                    ;
+; PS2_Interface:kbd|PS2_Controller:PS2|s_ps2_transceiver~2                                                                            ; Lost fanout                                                                                               ;
+; PS2_Interface:kbd|PS2_Controller:PS2|s_ps2_transceiver~3                                                                            ; Lost fanout                                                                                               ;
+; PS2_Interface:kbd|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|s_ps2_transmitter~2                                  ; Lost fanout                                                                                               ;
+; PS2_Interface:kbd|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|s_ps2_transmitter~3                                  ; Lost fanout                                                                                               ;
+; PS2_Interface:kbd|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|s_ps2_transmitter~4                                  ; Lost fanout                                                                                               ;
+; PS2_Interface:kbd|PS2_Controller:PS2|Altera_UP_PS2_Data_In:PS2_Data_In|s_ps2_receiver~2                                             ; Lost fanout                                                                                               ;
+; PS2_Interface:kbd|PS2_Controller:PS2|Altera_UP_PS2_Data_In:PS2_Data_In|s_ps2_receiver~3                                             ; Lost fanout                                                                                               ;
+; PS2_Interface:kbd|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|s_ps2_transmitter.PS2_STATE_1_INITIATE_COMMUNICATION ; Stuck at GND due to stuck port data_in                                                                    ;
+; PS2_Interface:kbd|PS2_Controller:PS2|s_ps2_transceiver.PS2_STATE_2_COMMAND_OUT                                                      ; Stuck at GND due to stuck port data_in                                                                    ;
+; PS2_Interface:kbd|PS2_Controller:PS2|s_ps2_transceiver.PS2_STATE_4_END_DELAYED                                                      ; Stuck at GND due to stuck port data_in                                                                    ;
+; PS2_Interface:kbd|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|command_initiate_counter[1..13]                      ; Stuck at GND due to stuck port data_in                                                                    ;
+; PS2_Interface:kbd|PS2_Controller:PS2|s_ps2_transceiver.PS2_STATE_3_END_TRANSFER                                                     ; Stuck at GND due to stuck port data_in                                                                    ;
+; PS2_Interface:kbd|PS2_Controller:PS2|Altera_UP_PS2_Data_In:PS2_Data_In|s_ps2_receiver.PS2_STATE_1_WAIT_FOR_DATA                     ; Stuck at GND due to stuck port data_in                                                                    ;
+; PS2_Interface:kbd|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|s_ps2_transmitter.PS2_STATE_2_WAIT_FOR_CLOCK         ; Stuck at GND due to stuck port data_in                                                                    ;
+; PS2_Interface:kbd|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|waiting_counter[1..20]                               ; Stuck at GND due to stuck port data_in                                                                    ;
+; PS2_Interface:kbd|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|s_ps2_transmitter.PS2_STATE_3_TRANSMIT_DATA          ; Stuck at GND due to stuck port data_in                                                                    ;
+; PS2_Interface:kbd|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|cur_bit[0..3]                                        ; Stuck at GND due to stuck port data_in                                                                    ;
+; PS2_Interface:kbd|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|s_ps2_transmitter.PS2_STATE_4_TRANSMIT_STOP_BIT      ; Stuck at GND due to stuck port data_in                                                                    ;
+; PS2_Interface:kbd|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|s_ps2_transmitter.PS2_STATE_5_RECEIVE_ACK_BIT        ; Stuck at GND due to stuck port data_in                                                                    ;
+; PS2_Interface:kbd|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|transfer_counter[1..17]                              ; Stuck at GND due to stuck port data_in                                                                    ;
+; PS2_Interface:kbd|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|s_ps2_transmitter.PS2_STATE_6_COMMAND_WAS_SENT       ; Stuck at GND due to stuck port data_in                                                                    ;
+; PS2_Interface:kbd|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|s_ps2_transmitter.PS2_STATE_7_TRANSMISSION_ERROR     ; Stuck at GND due to stuck port data_in                                                                    ;
+; PS2_Interface:kbd|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|command_was_sent                                     ; Stuck at GND due to stuck port data_in                                                                    ;
+; PS2_Interface:kbd|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|error_communication_timed_out                        ; Stuck at GND due to stuck port data_in                                                                    ;
+; PS2_Interface:kbd|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|ps2_command[8]                                       ; Lost fanout                                                                                               ;
+; PS2_Interface:kbd|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|s_ps2_transmitter.PS2_STATE_0_IDLE                   ; Lost fanout                                                                                               ;
+; paddle_control:paddles|paddleL_y[0]                                                                                                 ; Stuck at GND due to stuck port data_in                                                                    ;
+; paddle_control:paddles|paddleR_y[0]                                                                                                 ; Stuck at GND due to stuck port data_in                                                                    ;
+; Total Number of Removed Registers = 114                                                                                             ;                                                                                                           ;
++-------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Removed Registers Triggering Further Register Optimizations                                                                                                                                                                                                                                        ;
++-------------------------------------------------------------------------------------------------------------------------------------+---------------------------+----------------------------------------------------------------------------------------------------------------------------------+
+; Register name                                                                                                                       ; Reason for Removal        ; Registers Removed due to This Register                                                                                           ;
++-------------------------------------------------------------------------------------------------------------------------------------+---------------------------+----------------------------------------------------------------------------------------------------------------------------------+
+; PS2_Interface:kbd|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|s_ps2_transmitter.PS2_STATE_3_TRANSMIT_DATA          ; Stuck at GND              ; PS2_Interface:kbd|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|s_ps2_transmitter.PS2_STATE_4_TRANSMIT_STOP_BIT,  ;
+;                                                                                                                                     ; due to stuck port data_in ; PS2_Interface:kbd|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|s_ps2_transmitter.PS2_STATE_5_RECEIVE_ACK_BIT,    ;
+;                                                                                                                                     ;                           ; PS2_Interface:kbd|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|transfer_counter[5],                              ;
+;                                                                                                                                     ;                           ; PS2_Interface:kbd|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|transfer_counter[6],                              ;
+;                                                                                                                                     ;                           ; PS2_Interface:kbd|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|transfer_counter[7],                              ;
+;                                                                                                                                     ;                           ; PS2_Interface:kbd|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|transfer_counter[8],                              ;
+;                                                                                                                                     ;                           ; PS2_Interface:kbd|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|transfer_counter[9],                              ;
+;                                                                                                                                     ;                           ; PS2_Interface:kbd|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|transfer_counter[10],                             ;
+;                                                                                                                                     ;                           ; PS2_Interface:kbd|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|transfer_counter[11],                             ;
+;                                                                                                                                     ;                           ; PS2_Interface:kbd|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|transfer_counter[12],                             ;
+;                                                                                                                                     ;                           ; PS2_Interface:kbd|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|transfer_counter[13],                             ;
+;                                                                                                                                     ;                           ; PS2_Interface:kbd|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|transfer_counter[14],                             ;
+;                                                                                                                                     ;                           ; PS2_Interface:kbd|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|transfer_counter[15],                             ;
+;                                                                                                                                     ;                           ; PS2_Interface:kbd|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|transfer_counter[16],                             ;
+;                                                                                                                                     ;                           ; PS2_Interface:kbd|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|transfer_counter[17],                             ;
+;                                                                                                                                     ;                           ; PS2_Interface:kbd|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|s_ps2_transmitter.PS2_STATE_6_COMMAND_WAS_SENT,   ;
+;                                                                                                                                     ;                           ; PS2_Interface:kbd|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|command_was_sent                                  ;
+; PS2_Interface:kbd|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|s_ps2_transmitter.PS2_STATE_2_WAIT_FOR_CLOCK         ; Stuck at GND              ; PS2_Interface:kbd|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|waiting_counter[7],                               ;
+;                                                                                                                                     ; due to stuck port data_in ; PS2_Interface:kbd|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|waiting_counter[8],                               ;
+;                                                                                                                                     ;                           ; PS2_Interface:kbd|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|waiting_counter[9],                               ;
+;                                                                                                                                     ;                           ; PS2_Interface:kbd|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|waiting_counter[10],                              ;
+;                                                                                                                                     ;                           ; PS2_Interface:kbd|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|waiting_counter[11],                              ;
+;                                                                                                                                     ;                           ; PS2_Interface:kbd|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|waiting_counter[12],                              ;
+;                                                                                                                                     ;                           ; PS2_Interface:kbd|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|waiting_counter[13],                              ;
+;                                                                                                                                     ;                           ; PS2_Interface:kbd|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|waiting_counter[14],                              ;
+;                                                                                                                                     ;                           ; PS2_Interface:kbd|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|waiting_counter[15],                              ;
+;                                                                                                                                     ;                           ; PS2_Interface:kbd|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|waiting_counter[16],                              ;
+;                                                                                                                                     ;                           ; PS2_Interface:kbd|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|waiting_counter[17],                              ;
+;                                                                                                                                     ;                           ; PS2_Interface:kbd|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|waiting_counter[18],                              ;
+;                                                                                                                                     ;                           ; PS2_Interface:kbd|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|waiting_counter[19],                              ;
+;                                                                                                                                     ;                           ; PS2_Interface:kbd|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|waiting_counter[20]                               ;
+; PS2_Interface:kbd|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|s_ps2_transmitter.PS2_STATE_1_INITIATE_COMMUNICATION ; Stuck at GND              ; PS2_Interface:kbd|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|command_initiate_counter[7],                      ;
+;                                                                                                                                     ; due to stuck port data_in ; PS2_Interface:kbd|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|command_initiate_counter[8],                      ;
+;                                                                                                                                     ;                           ; PS2_Interface:kbd|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|command_initiate_counter[9],                      ;
+;                                                                                                                                     ;                           ; PS2_Interface:kbd|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|command_initiate_counter[10],                     ;
+;                                                                                                                                     ;                           ; PS2_Interface:kbd|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|command_initiate_counter[11],                     ;
+;                                                                                                                                     ;                           ; PS2_Interface:kbd|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|command_initiate_counter[12],                     ;
+;                                                                                                                                     ;                           ; PS2_Interface:kbd|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|s_ps2_transmitter.PS2_STATE_7_TRANSMISSION_ERROR, ;
+;                                                                                                                                     ;                           ; PS2_Interface:kbd|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|error_communication_timed_out,                    ;
+;                                                                                                                                     ;                           ; PS2_Interface:kbd|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|ps2_command[8],                                   ;
+;                                                                                                                                     ;                           ; PS2_Interface:kbd|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|s_ps2_transmitter.PS2_STATE_0_IDLE                ;
+; PS2_Interface:kbd|PS2_Controller:PS2|idle_counter[3]                                                                                ; Lost Fanouts              ; PS2_Interface:kbd|PS2_Controller:PS2|idle_counter[4],                                                                            ;
+;                                                                                                                                     ;                           ; PS2_Interface:kbd|PS2_Controller:PS2|idle_counter[5],                                                                            ;
+;                                                                                                                                     ;                           ; PS2_Interface:kbd|PS2_Controller:PS2|idle_counter[6],                                                                            ;
+;                                                                                                                                     ;                           ; PS2_Interface:kbd|PS2_Controller:PS2|idle_counter[7]                                                                             ;
+; ball_motion:motion|vx[0]                                                                                                            ; Stuck at GND              ; ball_motion:motion|ball_x[0]                                                                                                     ;
+;                                                                                                                                     ; due to stuck port data_in ;                                                                                                                                  ;
+; PS2_Interface:kbd|PS2_Controller:PS2|s_ps2_transceiver.PS2_STATE_3_END_TRANSFER                                                     ; Stuck at GND              ; PS2_Interface:kbd|PS2_Controller:PS2|Altera_UP_PS2_Data_In:PS2_Data_In|s_ps2_receiver.PS2_STATE_1_WAIT_FOR_DATA                  ;
+;                                                                                                                                     ; due to stuck port data_in ;                                                                                                                                  ;
++-------------------------------------------------------------------------------------------------------------------------------------+---------------------------+----------------------------------------------------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 116   ;
+; Number of registers using Synchronous Clear  ; 5     ;
+; Number of registers using Synchronous Load   ; 0     ;
+; Number of registers using Asynchronous Clear ; 80    ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 64    ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++---------------------------------------------------+
+; Inverted Register Statistics                      ;
++-----------------------------------------+---------+
+; Inverted Register                       ; Fan out ;
++-----------------------------------------+---------+
+; paddle_control:paddles|paddleR_y[7]     ; 6       ;
+; paddle_control:paddles|paddleR_y[6]     ; 6       ;
+; paddle_control:paddles|paddleR_y[4]     ; 5       ;
+; paddle_control:paddles|paddleR_y[1]     ; 4       ;
+; paddle_control:paddles|paddleL_y[7]     ; 7       ;
+; paddle_control:paddles|paddleL_y[6]     ; 7       ;
+; paddle_control:paddles|paddleL_y[4]     ; 6       ;
+; paddle_control:paddles|paddleL_y[1]     ; 5       ;
+; ball_motion:motion|ball_y[7]            ; 3       ;
+; ball_motion:motion|ball_y[6]            ; 3       ;
+; ball_motion:motion|ball_y[5]            ; 3       ;
+; ball_motion:motion|ball_y[4]            ; 3       ;
+; ball_motion:motion|ball_x[8]            ; 3       ;
+; ball_motion:motion|ball_x[6]            ; 3       ;
+; Total number of inverted registers = 14 ;         ;
++-----------------------------------------+---------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                                                                                  ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                                                                        ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------------------------------------------------------------------------------+
+; 3:1                ; 8 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; Yes        ; |pong|PS2_Interface:kbd|PS2_Controller:PS2|Altera_UP_PS2_Data_In:PS2_Data_In|received_data[6]                     ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; Yes        ; |pong|PS2_Interface:kbd|PS2_Controller:PS2|Altera_UP_PS2_Data_In:PS2_Data_In|data_shift_reg[6]                    ;
+; 3:1                ; 6 bits    ; 12 LEs        ; 12 LEs               ; 0 LEs                  ; Yes        ; |pong|ball_motion:motion|ball_y[3]                                                                                ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; Yes        ; |pong|ball_motion:motion|ball_x[4]                                                                                ;
+; 4:1                ; 17 bits   ; 34 LEs        ; 17 LEs               ; 17 LEs                 ; Yes        ; |pong|PS2_Interface:kbd|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|transfer_counter[3]          ;
+; 4:1                ; 13 bits   ; 26 LEs        ; 13 LEs               ; 13 LEs                 ; Yes        ; |pong|PS2_Interface:kbd|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|command_initiate_counter[13] ;
+; 4:1                ; 20 bits   ; 40 LEs        ; 20 LEs               ; 20 LEs                 ; Yes        ; |pong|PS2_Interface:kbd|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|waiting_counter[15]          ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |pong|PS2_Interface:kbd|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|cur_bit[0]                   ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |pong|PS2_Interface:kbd|PS2_Controller:PS2|Altera_UP_PS2_Data_In:PS2_Data_In|data_count[0]                        ;
+; 258:1              ; 5 bits    ; 860 LEs       ; 10 LEs               ; 850 LEs                ; Yes        ; |pong|paddle_control:paddles|paddleR_y[2]                                                                         ;
+; 258:1              ; 5 bits    ; 860 LEs       ; 10 LEs               ; 850 LEs                ; Yes        ; |pong|paddle_control:paddles|paddleL_y[9]                                                                         ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |pong|ball_motion:motion|ball_y[4]                                                                                ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; Yes        ; |pong|ball_motion:motion|ball_x[8]                                                                                ;
+; 258:1              ; 3 bits    ; 516 LEs       ; 6 LEs                ; 510 LEs                ; Yes        ; |pong|paddle_control:paddles|paddleR_y[6]                                                                         ;
+; 258:1              ; 3 bits    ; 516 LEs       ; 6 LEs                ; 510 LEs                ; Yes        ; |pong|paddle_control:paddles|paddleL_y[4]                                                                         ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: vga_controller:u_vga|video_sync_generator:LTM_ins ;
++----------------+-------+-----------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                  ;
++----------------+-------+-----------------------------------------------------------------------+
+; hori_line      ; 800   ; Signed Integer                                                        ;
+; hori_back      ; 144   ; Signed Integer                                                        ;
+; hori_front     ; 16    ; Signed Integer                                                        ;
+; vert_line      ; 525   ; Signed Integer                                                        ;
+; vert_back      ; 34    ; Signed Integer                                                        ;
+; vert_front     ; 11    ; Signed Integer                                                        ;
+; H_sync_cycle   ; 96    ; Signed Integer                                                        ;
+; V_sync_cycle   ; 2     ; Signed Integer                                                        ;
++----------------+-------+-----------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: PS2_Interface:kbd|PS2_Controller:PS2 ;
++------------------+-------+--------------------------------------------------------+
+; Parameter Name   ; Value ; Type                                                   ;
++------------------+-------+--------------------------------------------------------+
+; INITIALIZE_MOUSE ; 0     ; Signed Integer                                         ;
++------------------+-------+--------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: PS2_Interface:kbd|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out ;
++------------------------------------+----------------------+-----------------------------------------------------------------+
+; Parameter Name                     ; Value                ; Type                                                            ;
++------------------------------------+----------------------+-----------------------------------------------------------------+
+; CLOCK_CYCLES_FOR_101US             ; 5050                 ; Signed Integer                                                  ;
+; NUMBER_OF_BITS_FOR_101US           ; 13                   ; Signed Integer                                                  ;
+; COUNTER_INCREMENT_FOR_101US        ; 0000000000001        ; Unsigned Binary                                                 ;
+; CLOCK_CYCLES_FOR_15MS              ; 750000               ; Signed Integer                                                  ;
+; NUMBER_OF_BITS_FOR_15MS            ; 20                   ; Signed Integer                                                  ;
+; COUNTER_INCREMENT_FOR_15MS         ; 00000000000000000001 ; Unsigned Binary                                                 ;
+; CLOCK_CYCLES_FOR_2MS               ; 100000               ; Signed Integer                                                  ;
+; NUMBER_OF_BITS_FOR_2MS             ; 17                   ; Signed Integer                                                  ;
+; COUNTER_INCREMENT_FOR_2MS          ; 00000000000000001    ; Unsigned Binary                                                 ;
+; PS2_STATE_0_IDLE                   ; 000                  ; Unsigned Binary                                                 ;
+; PS2_STATE_1_INITIATE_COMMUNICATION ; 001                  ; Unsigned Binary                                                 ;
+; PS2_STATE_2_WAIT_FOR_CLOCK         ; 010                  ; Unsigned Binary                                                 ;
+; PS2_STATE_3_TRANSMIT_DATA          ; 011                  ; Unsigned Binary                                                 ;
+; PS2_STATE_4_TRANSMIT_STOP_BIT      ; 100                  ; Unsigned Binary                                                 ;
+; PS2_STATE_5_RECEIVE_ACK_BIT        ; 101                  ; Unsigned Binary                                                 ;
+; PS2_STATE_6_COMMAND_WAS_SENT       ; 110                  ; Unsigned Binary                                                 ;
+; PS2_STATE_7_TRANSMISSION_ERROR     ; 111                  ; Unsigned Binary                                                 ;
++------------------------------------+----------------------+-----------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: paddle_control:paddles ;
++-----------------+-------+-------------------------------------------+
+; Parameter Name  ; Value ; Type                                      ;
++-----------------+-------+-------------------------------------------+
+; SCREEN_HEIGHT   ; 480   ; Signed Integer                            ;
+; PADDLE_HEIGHT   ; 60    ; Signed Integer                            ;
+; PADDLE_SPEED    ; 4     ; Signed Integer                            ;
+; PADDLEL_START_Y ; 210   ; Signed Integer                            ;
+; PADDLER_START_Y ; 210   ; Signed Integer                            ;
++-----------------+-------+-------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "PS2_Interface:kbd|PS2_Controller:PS2"                                                                                                                                 ;
++-------------------------------+--------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
+; Port                          ; Type   ; Severity ; Details                                                                                                                                      ;
++-------------------------------+--------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
+; the_command                   ; Input  ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
+; send_command                  ; Input  ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
+; command_was_sent              ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed.                                     ;
+; error_communication_timed_out ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed.                                     ;
++-------------------------------+--------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "PS2_Interface:kbd"                                                                                ;
++--------------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port               ; Type   ; Severity ; Details                                                                             ;
++--------------------+--------+----------+-------------------------------------------------------------------------------------+
+; last_data_received ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++--------------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------+
+; Post-Synthesis Netlist Statistics for Top Partition ;
++-----------------------+-----------------------------+
+; Type                  ; Count                       ;
++-----------------------+-----------------------------+
+; boundary_port         ; 43                          ;
+; cycloneiii_ff         ; 116                         ;
+;     CLR               ; 36                          ;
+;     ENA               ; 20                          ;
+;     ENA CLR           ; 44                          ;
+;     SCLR              ; 5                           ;
+;     plain             ; 11                          ;
+; cycloneiii_io_obuf    ; 2                           ;
+; cycloneiii_lcell_comb ; 406                         ;
+;     arith             ; 194                         ;
+;         2 data inputs ; 110                         ;
+;         3 data inputs ; 84                          ;
+;     normal            ; 212                         ;
+;         0 data inputs ; 5                           ;
+;         1 data inputs ; 18                          ;
+;         2 data inputs ; 56                          ;
+;         3 data inputs ; 31                          ;
+;         4 data inputs ; 102                         ;
+;                       ;                             ;
+; Max LUT depth         ; 10.80                       ;
+; Average LUT depth     ; 5.32                        ;
++-----------------------+-----------------------------+
+
+
++-------------------------------+
+; Elapsed Time Per Partition    ;
++----------------+--------------+
+; Partition Name ; Elapsed Time ;
++----------------+--------------+
+; Top            ; 00:00:00     ;
++----------------+--------------+
+
+
++-------------------------------+
+; Analysis & Synthesis Messages ;
++-------------------------------+
+Info: *******************************************************************
+Info: Running Quartus Prime Analysis & Synthesis
+    Info: Version 17.0.0 Build 595 04/25/2017 SJ Lite Edition
+    Info: Processing started: Tue Dec 09 18:34:48 2025
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off pong -c pong
+Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
+Info (20030): Parallel compilation is enabled and will use 16 of the 16 processors detected
+Info (12021): Found 1 design units, including 1 entities, in source file /users/leowe/downloads/labs/pc5/submission/skeleton.v
+    Info (12023): Found entity 1: skeleton File: C:/Users/leowe/Downloads/Labs/PC5/Submission/skeleton.v Line: 14
+Info (12021): Found 1 design units, including 1 entities, in source file /users/leowe/downloads/labs/pc5/submission/regfile.v
+    Info (12023): Found entity 1: regfile File: C:/Users/leowe/Downloads/Labs/PC5/Submission/regfile.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file /users/leowe/downloads/labs/pc5/submission/processor.v
+    Info (12023): Found entity 1: processor File: C:/Users/leowe/Downloads/Labs/PC5/Submission/processor.v Line: 50
+Info (12021): Found 1 design units, including 1 entities, in source file /users/leowe/downloads/labs/pc5/submission/opcode_decode.v
+    Info (12023): Found entity 1: opcode_decode File: C:/Users/leowe/Downloads/Labs/PC5/Submission/opcode_decode.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file /users/leowe/downloads/labs/pc5/submission/my_dffe.v
+    Info (12023): Found entity 1: my_dffe File: C:/Users/leowe/Downloads/Labs/PC5/Submission/my_dffe.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file /users/leowe/downloads/labs/pc5/submission/imem.v
+    Info (12023): Found entity 1: imem File: C:/Users/leowe/Downloads/Labs/PC5/Submission/imem.v Line: 40
+Info (12021): Found 1 design units, including 1 entities, in source file /users/leowe/downloads/labs/pc5/submission/freq_div_4.v
+    Info (12023): Found entity 1: freq_div_4 File: C:/Users/leowe/Downloads/Labs/PC5/Submission/freq_div_4.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file /users/leowe/downloads/labs/pc5/submission/freq_div_2.v
+    Info (12023): Found entity 1: freq_div_2 File: C:/Users/leowe/Downloads/Labs/PC5/Submission/freq_div_2.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file /users/leowe/downloads/labs/pc5/submission/dmem.v
+    Info (12023): Found entity 1: dmem File: C:/Users/leowe/Downloads/Labs/PC5/Submission/dmem.v Line: 40
+Info (12021): Found 1 design units, including 1 entities, in source file /users/leowe/downloads/labs/pc5/submission/alu.v
+    Info (12023): Found entity 1: alu File: C:/Users/leowe/Downloads/Labs/PC5/Submission/alu.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file pong.v
+    Info (12023): Found entity 1: pong File: C:/Users/leowe/Downloads/Labs/PC6/pong.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file vga_controller.v
+    Info (12023): Found entity 1: vga_controller File: C:/Users/leowe/Downloads/Labs/PC6/vga_controller.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file video_sync_generator.v
+    Info (12023): Found entity 1: video_sync_generator File: C:/Users/leowe/Downloads/Labs/PC6/video_sync_generator.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file pong_renderer.v
+    Info (12023): Found entity 1: pong_renderer File: C:/Users/leowe/Downloads/Labs/PC6/pong_renderer.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file pong_renderer_tb.v
+    Info (12023): Found entity 1: pong_renderer_tb File: C:/Users/leowe/Downloads/Labs/PC6/pong_renderer_tb.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file ball_motion.v
+    Info (12023): Found entity 1: ball_motion File: C:/Users/leowe/Downloads/Labs/PC6/ball_motion.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file paddle_control.v
+    Info (12023): Found entity 1: paddle_control File: C:/Users/leowe/Downloads/Labs/PC6/paddle_control.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file ps2_controller.v
+    Info (12023): Found entity 1: PS2_Controller File: C:/Users/leowe/Downloads/Labs/PC6/PS2_Controller.v Line: 9
+Info (12021): Found 1 design units, including 1 entities, in source file altera_up_ps2_data_in.v
+    Info (12023): Found entity 1: Altera_UP_PS2_Data_In File: C:/Users/leowe/Downloads/Labs/PC6/Altera_UP_PS2_Data_In.v Line: 10
+Info (12021): Found 1 design units, including 1 entities, in source file altera_up_ps2_command_out.v
+    Info (12023): Found entity 1: Altera_UP_PS2_Command_Out File: C:/Users/leowe/Downloads/Labs/PC6/Altera_UP_PS2_Command_Out.v Line: 10
+Info (12021): Found 1 design units, including 1 entities, in source file ps2_interface.v
+    Info (12023): Found entity 1: PS2_Interface File: C:/Users/leowe/Downloads/Labs/PC6/PS2_Interface.v Line: 1
+Info (12127): Elaborating entity "pong" for the top level hierarchy
+Warning (10036): Verilog HDL or VHDL warning at pong.v(38): object "game_tick" assigned a value but never read File: C:/Users/leowe/Downloads/Labs/PC6/pong.v Line: 38
+Warning (10230): Verilog HDL assignment warning at pong.v(92): truncated value with size 10 to match size of target (8) File: C:/Users/leowe/Downloads/Labs/PC6/pong.v Line: 92
+Info (12128): Elaborating entity "ball_motion" for hierarchy "ball_motion:motion" File: C:/Users/leowe/Downloads/Labs/PC6/pong.v Line: 52
+Warning (10230): Verilog HDL assignment warning at ball_motion.v(25): truncated value with size 32 to match size of target (20) File: C:/Users/leowe/Downloads/Labs/PC6/ball_motion.v Line: 25
+Warning (10230): Verilog HDL assignment warning at ball_motion.v(33): truncated value with size 32 to match size of target (10) File: C:/Users/leowe/Downloads/Labs/PC6/ball_motion.v Line: 33
+Warning (10230): Verilog HDL assignment warning at ball_motion.v(34): truncated value with size 32 to match size of target (10) File: C:/Users/leowe/Downloads/Labs/PC6/ball_motion.v Line: 34
+Info (12128): Elaborating entity "vga_controller" for hierarchy "vga_controller:u_vga" File: C:/Users/leowe/Downloads/Labs/PC6/pong.v Line: 66
+Info (12128): Elaborating entity "video_sync_generator" for hierarchy "vga_controller:u_vga|video_sync_generator:LTM_ins" File: C:/Users/leowe/Downloads/Labs/PC6/vga_controller.v Line: 41
+Warning (10230): Verilog HDL assignment warning at video_sync_generator.v(81): truncated value with size 32 to match size of target (10) File: C:/Users/leowe/Downloads/Labs/PC6/video_sync_generator.v Line: 81
+Warning (10230): Verilog HDL assignment warning at video_sync_generator.v(84): truncated value with size 32 to match size of target (11) File: C:/Users/leowe/Downloads/Labs/PC6/video_sync_generator.v Line: 84
+Warning (10230): Verilog HDL assignment warning at video_sync_generator.v(96): truncated value with size 32 to match size of target (10) File: C:/Users/leowe/Downloads/Labs/PC6/video_sync_generator.v Line: 96
+Warning (10230): Verilog HDL assignment warning at video_sync_generator.v(97): truncated value with size 32 to match size of target (10) File: C:/Users/leowe/Downloads/Labs/PC6/video_sync_generator.v Line: 97
+Info (12128): Elaborating entity "pong_renderer" for hierarchy "vga_controller:u_vga|pong_renderer:renderer" File: C:/Users/leowe/Downloads/Labs/PC6/vga_controller.v Line: 52
+Info (12128): Elaborating entity "PS2_Interface" for hierarchy "PS2_Interface:kbd" File: C:/Users/leowe/Downloads/Labs/PC6/pong.v Line: 80
+Info (12128): Elaborating entity "PS2_Controller" for hierarchy "PS2_Interface:kbd|PS2_Controller:PS2" File: C:/Users/leowe/Downloads/Labs/PC6/PS2_Interface.v Line: 62
+Info (12128): Elaborating entity "Altera_UP_PS2_Data_In" for hierarchy "PS2_Interface:kbd|PS2_Controller:PS2|Altera_UP_PS2_Data_In:PS2_Data_In" File: C:/Users/leowe/Downloads/Labs/PC6/PS2_Controller.v Line: 248
+Info (12128): Elaborating entity "Altera_UP_PS2_Command_Out" for hierarchy "PS2_Interface:kbd|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out" File: C:/Users/leowe/Downloads/Labs/PC6/PS2_Controller.v Line: 268
+Info (12128): Elaborating entity "paddle_control" for hierarchy "paddle_control:paddles" File: C:/Users/leowe/Downloads/Labs/PC6/pong.v Line: 90
+Warning (10230): Verilog HDL assignment warning at paddle_control.v(31): truncated value with size 32 to match size of target (10) File: C:/Users/leowe/Downloads/Labs/PC6/paddle_control.v Line: 31
+Warning (10230): Verilog HDL assignment warning at paddle_control.v(37): truncated value with size 32 to match size of target (10) File: C:/Users/leowe/Downloads/Labs/PC6/paddle_control.v Line: 37
+Warning (10230): Verilog HDL assignment warning at paddle_control.v(39): truncated value with size 32 to match size of target (10) File: C:/Users/leowe/Downloads/Labs/PC6/paddle_control.v Line: 39
+Warning (10230): Verilog HDL assignment warning at paddle_control.v(45): truncated value with size 32 to match size of target (10) File: C:/Users/leowe/Downloads/Labs/PC6/paddle_control.v Line: 45
+Warning (10230): Verilog HDL assignment warning at paddle_control.v(51): truncated value with size 32 to match size of target (10) File: C:/Users/leowe/Downloads/Labs/PC6/paddle_control.v Line: 51
+Warning (10230): Verilog HDL assignment warning at paddle_control.v(53): truncated value with size 32 to match size of target (10) File: C:/Users/leowe/Downloads/Labs/PC6/paddle_control.v Line: 53
+Warning (12241): 1 hierarchies have connectivity warnings - see the Connectivity Checks report folder
+Info (13000): Registers with preset signals will power-up high File: C:/Users/leowe/Downloads/Labs/PC6/ball_motion.v Line: 37
+Info (13003): DEV_CLRn pin will set, and not reset, register with preset signal due to NOT Gate Push-Back
+Warning (13024): Output pins are stuck at VCC or GND
+    Warning (13410): Pin "LEDR[0]" is stuck at GND File: C:/Users/leowe/Downloads/Labs/PC6/pong.v Line: 14
+Info (286030): Timing-Driven Synthesis is running
+Info (17049): 17 registers lost all their fanouts during netlist optimizations.
+Info (144001): Generated suppressed messages file C:/Users/leowe/Downloads/Labs/PC6/output_files/pong.map.smsg
+Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
+    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
+Warning (21074): Design contains 3 input pin(s) that do not drive logic
+    Warning (15610): No output dependent on input pin "KEY[1]" File: C:/Users/leowe/Downloads/Labs/PC6/pong.v Line: 3
+    Warning (15610): No output dependent on input pin "KEY[2]" File: C:/Users/leowe/Downloads/Labs/PC6/pong.v Line: 3
+    Warning (15610): No output dependent on input pin "KEY[3]" File: C:/Users/leowe/Downloads/Labs/PC6/pong.v Line: 3
+Info (21057): Implemented 462 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 5 input pins
+    Info (21059): Implemented 36 output pins
+    Info (21060): Implemented 2 bidirectional pins
+    Info (21061): Implemented 419 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 23 warnings
+    Info: Peak virtual memory: 4846 megabytes
+    Info: Processing ended: Tue Dec 09 18:34:55 2025
+    Info: Elapsed time: 00:00:07
+    Info: Total CPU time (on all processors): 00:00:16
+
+
++------------------------------------------+
+; Analysis & Synthesis Suppressed Messages ;
++------------------------------------------+
+The suppressed messages can be found in C:/Users/leowe/Downloads/Labs/PC6/output_files/pong.map.smsg.
+
+

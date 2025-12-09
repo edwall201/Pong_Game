@@ -1,0 +1,98 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/Users/leowe/Downloads/Labs/PC6/simulation/modelsim
+vpong_renderer
+Z1 !s110 1765148009
+!i10b 1
+!s100 QEUWoLBc9>`ZUDWO?lM`43
+INjVl97gbfT;BcXV<O4Rdl0
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+R0
+w1765147894
+8C:/Users/leowe/Downloads/Labs/PC6/pong_renderer.v
+FC:/Users/leowe/Downloads/Labs/PC6/pong_renderer.v
+L0 1
+Z3 OV;L;10.5b;63
+r1
+!s85 0
+31
+Z4 !s108 1765148009.000000
+!s107 C:/Users/leowe/Downloads/Labs/PC6/pong_renderer.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/leowe/Downloads/Labs/PC6|C:/Users/leowe/Downloads/Labs/PC6/pong_renderer.v|
+!i113 1
+Z5 o-vlog01compat -work work
+Z6 !s92 -vlog01compat -work work +incdir+C:/Users/leowe/Downloads/Labs/PC6
+Z7 tCvgOpt 0
+vpong_renderer_tb
+R1
+!i10b 1
+!s100 QM0d_a89FglaB<X3^M4o_3
+I[I@c4@zUi[QB2IbA[0JB`0
+R2
+R0
+w1765147456
+8C:/Users/leowe/Downloads/Labs/PC6/pong_renderer_tb.v
+FC:/Users/leowe/Downloads/Labs/PC6/pong_renderer_tb.v
+L0 1
+R3
+r1
+!s85 0
+31
+R4
+!s107 C:/Users/leowe/Downloads/Labs/PC6/pong_renderer_tb.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/leowe/Downloads/Labs/PC6|C:/Users/leowe/Downloads/Labs/PC6/pong_renderer_tb.v|
+!i113 1
+R5
+R6
+R7
+vvga_controller
+R1
+!i10b 1
+!s100 HPE=F:laFZXM3m2`C4LYf2
+I8hKibhe47HlV^QY^m5?>L3
+R2
+R0
+w1765146996
+8C:/Users/leowe/Downloads/Labs/PC6/vga_controller.v
+FC:/Users/leowe/Downloads/Labs/PC6/vga_controller.v
+L0 1
+R3
+r1
+!s85 0
+31
+R4
+!s107 C:/Users/leowe/Downloads/Labs/PC6/vga_controller.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/leowe/Downloads/Labs/PC6|C:/Users/leowe/Downloads/Labs/PC6/vga_controller.v|
+!i113 1
+R5
+R6
+R7
+vvideo_sync_generator
+R1
+!i10b 1
+!s100 fgPoBk2<??`h0IgP<W`E92
+IbWH`S=nF>7:WX=_bfHRlG0
+R2
+R0
+w1765144664
+8C:/Users/leowe/Downloads/Labs/PC6/video_sync_generator.v
+FC:/Users/leowe/Downloads/Labs/PC6/video_sync_generator.v
+L0 1
+R3
+r1
+!s85 0
+31
+R4
+!s107 C:/Users/leowe/Downloads/Labs/PC6/video_sync_generator.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/leowe/Downloads/Labs/PC6|C:/Users/leowe/Downloads/Labs/PC6/video_sync_generator.v|
+!i113 1
+R5
+R6
+R7

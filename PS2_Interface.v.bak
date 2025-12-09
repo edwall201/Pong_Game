@@ -35,10 +35,10 @@ module PS2_Interface(inclock, resetn, ps2_clock, ps2_data, ps2_key_data, ps2_key
 			// Convert scancode to ASCII for the 4 keys we care about. or it would show space
 			if (ps2_key_pressed_w == 1'b1) begin
 				case (ps2_key_data_w)
+					8'h15: ascii_out <= 8'd81; // Q -> ASCII 'Q' (81 decimal)
 					8'h1D: ascii_out <= 8'd87; // W -> ASCII 'W' (87 decimal)
-					8'h1B: ascii_out <= 8'd83; // S -> ASCII 'S' (83 decimal)
-					8'h43: ascii_out <= 8'd73; // I -> ASCII 'I' (73 decimal)
-					8'h42: ascii_out <= 8'd75; // K -> ASCII 'K' (75 decimal)
+					8'h24: ascii_out <= 8'd69; // E -> ASCII 'E' (69 decimal)
+					8'h2D: ascii_out <= 8'd82; // R -> ASCII 'R' (82 decimal)
 					default: ascii_out <= 8'h20; // not mapped -> space
 				endcase
 				// update last_data_received so top-level skeleton (ps2_out) sees ASCII

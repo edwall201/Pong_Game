@@ -1,0 +1,108 @@
+module paddle_control(
+    parameter SCREEN_H     = 480,
+    parameter PADDLE_HEIGHT = 60
+)(
+    input        clk,          // system/game clock
+    input        rst_n,        // active-low reset
+    // slow tick (similar to ball_tick) so paddles move at visible speed
+    input        game_tick,
+
+    // PS2 scan-byte interface
+    input        scan_ready,   // 1 when scan_code is valid
+    input  [7:0] scan_code,    // raw PS/2 scan code
+
+    output reg [9:0] paddleL_y,
+    output reg [9:0] paddleR_y
+);
+
+    // ==== Scan codes ====
+    localparam SC_W     = 8'h1D;
+    localparam SC_S     = 8'h1B;
+    localparam SC_UP    = 8'h75;
+    localparam SC_DOWN  = 8'h72;
+    localparam SC_BREAK = 8'hF0;
+
+    // Track if W, S, Up, Down are currently held down
+    reg w_down, s_down, up_down, down_down;
+
+    // Track whether the last byte was F0 (so current one is a break)
+    reg break_next;
+
+    // --- Keyboard state update ---
+    always @(posedge clk or negedge rst_n) begin
+        if (!rst_n) begin
+            break_next <= 1'b0;
+            w_down     <= 1'b0;
+            s_down     <= 1'b0;
+            up_down    <= 1'b0;
+            down_down  <= 1'b0;
+        end else if (scan_ready) begin
+            if (scan_code == SC_BREAK) begin
+                // Next scan code will be a break code
+                break_next <= 1'b1;
+            end else begin
+                // This is a make or break for a key we care about
+                if (!break_next) begin
+                    // MAKE (key pressed)
+                    case (scan_code)
+                        SC_W:    w_down    <= 1'b1;
+                        SC_S:    s_down    <= 1'b1;
+                        SC_UP:   up_down   <= 1'b1;
+                        SC_DOWN: down_down <= 1'b1;
+                    endcase
+                end else begin
+                    // BREAK (key released)
+                    case (scan_code)
+                        SC_W:    w_down    <= 1'b0;
+                        SC_S:    s_down    <= 1'b0;
+                        SC_UP:   up_down   <= 1'b0;
+                        SC_DOWN: down_down <= 1'b0;
+                    endcase
+                    break_next <= 1'b0;
+                end
+            end
+        end
+    end
+
+    // --- Paddle position update ---
+    localparam [9:0] TOP_LIMIT    = 10'd0;
+    localparam [9:0] BOTTOM_LIMIT = SCREEN_H - PADDLE_HEIGHT;  // max y
+
+    // How many pixels per tick you want to move
+    localparam signed [9:0] PADDLE_SPEED = 10'sd3;
+
+    always @(posedge clk or negedge rst_n) begin
+        if (!rst_n) begin
+            // start paddles roughly centered
+            paddleL_y <= (SCREEN_H - PADDLE_HEIGHT)/2;
+            paddleR_y <= (SCREEN_H - PADDLE_HEIGHT)/2;
+        end else if (game_tick) begin
+            // LEFT paddle: W = up, S = down
+            if (w_down && !s_down) begin
+                if (paddleL_y > TOP_LIMIT + PADDLE_SPEED)
+                    paddleL_y <= paddleL_y - PADDLE_SPEED;
+                else
+                    paddleL_y <= TOP_LIMIT;
+            end else if (s_down && !w_down) begin
+                if (paddleL_y < BOTTOM_LIMIT - PADDLE_SPEED)
+                    paddleL_y <= paddleL_y + PADDLE_SPEED;
+                else
+                    paddleL_y <= BOTTOM_LIMIT;
+            end
+
+            // RIGHT paddle: Up arrow = up, Down arrow = down
+            if (up_down && !down_down) begin
+                if (paddleR_y > TOP_LIMIT + PADDLE_SPEED)
+                    paddleR_y <= paddleR_y - PADDLE_SPEED;
+                else
+                    paddleR_y <= TOP_LIMIT;
+            end else if (down_down && !up_down) begin
+                if (paddleR_y < BOTTOM_LIMIT - PADDLE_SPEED)
+                    paddleR_y <= paddleR_y + PADDLE_SPEED;
+                else
+                    paddleR_y <= BOTTOM_LIMIT;
+            end
+        end
+    end
+
+endmodule
