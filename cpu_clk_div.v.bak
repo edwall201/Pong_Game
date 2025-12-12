@@ -1,0 +1,23 @@
+module cpu_clk_div #(
+    parameter DIV = 25_000_000    // 50MHz / (2*25M) = 1 Hz
+)(
+    input  wire clk_in,
+    input  wire rst_n,
+    output reg  clk_out
+);
+    reg [31:0] cnt;
+
+    always @(posedge clk_in or negedge rst_n) begin
+        if (!rst_n) begin
+            cnt    <= 32'd0;
+            clk_out <= 1'b0;
+        end else begin
+            if (cnt == DIV-1) begin
+                cnt    <= 32'd0;
+                clk_out <= ~clk_out;
+            end else begin
+                cnt <= cnt + 1'b1;
+            end
+        end
+    end
+endmodule

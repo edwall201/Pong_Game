@@ -1,0 +1,84 @@
+module dmem (
+    input         clock,
+    input  [11:0] address,
+    input  [31:0] data,
+    input         wren,
+    output reg [31:0] q,
+
+    // extra outputs to the rest of the system
+    output [9:0]  ball_x,
+    output [9:0]  ball_y,
+    output [31:0] ball_vx,
+    output [31:0] ball_vy,
+
+    input         game_tick_pulse   // from your divider
+);
+
+    // ----------------------------------------------------------------
+    // 1) Regular RAM
+    // ----------------------------------------------------------------
+    reg [31:0] mem [0:4095];
+
+    // ----------------------------------------------------------------
+    // 2) Special IO addresses (memory-mapped regs)
+    // ----------------------------------------------------------------
+    localparam BALL_X_ADDR    = 12'h800;
+    localparam BALL_Y_ADDR    = 12'h801;
+    localparam BALL_VX_ADDR   = 12'h802;
+    localparam BALL_VY_ADDR   = 12'h803;
+    localparam GAME_TICK_ADDR = 12'h804;
+
+    reg [31:0] ball_x_reg;
+    reg [31:0] ball_y_reg;
+    reg [31:0] ball_vx_reg;
+    reg [31:0] ball_vy_reg;
+    reg        game_tick_flag;
+
+    wire is_ball_x    = (address == BALL_X_ADDR);
+    wire is_ball_y    = (address == BALL_Y_ADDR);
+    wire is_ball_vx   = (address == BALL_VX_ADDR);
+    wire is_ball_vy   = (address == BALL_VY_ADDR);
+    wire is_game_tick = (address == GAME_TICK_ADDR);
+    wire is_io_addr   = is_ball_x | is_ball_y | is_ball_vx | is_ball_vy | is_game_tick;
+
+    // ----------------------------------------------------------------
+    // 3) Write logic
+    // ----------------------------------------------------------------
+    always @(posedge clock) begin
+        // latch external tick into flag
+        if (game_tick_pulse)
+            game_tick_flag <= 1'b1;
+
+        if (wren) begin
+            if (is_ball_x)      ball_x_reg  <= data;
+            else if (is_ball_y) ball_y_reg  <= data;
+            else if (is_ball_vx)ball_vx_reg <= data;
+            else if (is_ball_vy)ball_vy_reg <= data;
+            else if (is_game_tick)
+                game_tick_flag <= 1'b0;    // CPU clears by writing anything
+            else
+                mem[address] <= data;      // normal RAM write
+        end
+    end
+
+    // ----------------------------------------------------------------
+    // 4) Read logic
+    // ----------------------------------------------------------------
+    always @(*) begin
+        if (is_ball_x)         q = ball_x_reg;
+        else if (is_ball_y)    q = ball_y_reg;
+        else if (is_ball_vx)   q = ball_vx_reg;
+        else if (is_ball_vy)   q = ball_vy_reg;
+        else if (is_game_tick) q = {31'b0, game_tick_flag};
+        else                   q = mem[address];
+    end
+
+    // ----------------------------------------------------------------
+    // 5) Outputs to VGA / rest of hardware
+    // ----------------------------------------------------------------
+    assign ball_x  = ball_x_reg[9:0];
+    assign ball_y  = ball_y_reg[9:0];
+    assign ball_vx = ball_vx_reg;
+    assign ball_vy = ball_vy_reg;
+
+endmodule

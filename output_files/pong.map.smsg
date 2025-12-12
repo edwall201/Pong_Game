@@ -1,5 +1,1 @@
-Info (10281): Verilog HDL Declaration information at pong_renderer.v(11): object "ball_x" differs only in case from object "BALL_X" in the same scope File: C:/Users/leowe/Downloads/Labs/PC6/pong_renderer.v Line: 11
-Info (10281): Verilog HDL Declaration information at pong_renderer.v(12): object "ball_y" differs only in case from object "BALL_Y" in the same scope File: C:/Users/leowe/Downloads/Labs/PC6/pong_renderer.v Line: 12
-Info (10281): Verilog HDL Declaration information at pong_renderer.v(13): object "paddleL_y" differs only in case from object "PADDLEL_Y" in the same scope File: C:/Users/leowe/Downloads/Labs/PC6/pong_renderer.v Line: 13
-Info (10281): Verilog HDL Declaration information at pong_renderer.v(14): object "paddleR_y" differs only in case from object "PADDLER_Y" in the same scope File: C:/Users/leowe/Downloads/Labs/PC6/pong_renderer.v Line: 14
-Warning (10268): Verilog HDL information at ball_motion.v(30): always construct contains both blocking and non-blocking assignments File: C:/Users/leowe/Downloads/Labs/PC6/ball_motion.v Line: 30
+Warning (10268): Verilog HDL information at ball_motion.v(49): always construct contains both blocking and non-blocking assignments File: C:/Users/leowe/Downloads/Labs/PC6/ball_motion.v Line: 49

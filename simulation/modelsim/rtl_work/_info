@@ -8,72 +8,406 @@ z2
 !i10f 100
 cModel Technology
 Z0 dC:/Users/leowe/Downloads/Labs/PC6/simulation/modelsim
-vpong_renderer
-Z1 !s110 1765148009
+vAltera_UP_PS2_Command_Out
+Z1 !s110 1765440850
 !i10b 1
-!s100 QEUWoLBc9>`ZUDWO?lM`43
-INjVl97gbfT;BcXV<O4Rdl0
+!s100 ZjDIV:z^W4aE7ECD]ReVK0
+I@G^VRa;>ZPEfdCiRfc<iN2
 Z2 VDg1SIo80bB@j0V0VzS_@n1
 R0
-w1765147894
+w1765250528
+8C:/Users/leowe/Downloads/Labs/PC6/Altera_UP_PS2_Command_Out.v
+FC:/Users/leowe/Downloads/Labs/PC6/Altera_UP_PS2_Command_Out.v
+Z3 L0 10
+Z4 OV;L;10.5b;63
+r1
+!s85 0
+31
+Z5 !s108 1765440850.000000
+!s107 C:/Users/leowe/Downloads/Labs/PC6/Altera_UP_PS2_Command_Out.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/leowe/Downloads/Labs/PC6|C:/Users/leowe/Downloads/Labs/PC6/Altera_UP_PS2_Command_Out.v|
+!i113 1
+Z6 o-vlog01compat -work work
+Z7 !s92 -vlog01compat -work work +incdir+C:/Users/leowe/Downloads/Labs/PC6
+Z8 tCvgOpt 0
+n@altera_@u@p_@p@s2_@command_@out
+vAltera_UP_PS2_Data_In
+R1
+!i10b 1
+!s100 ee^TmQcGZ[E_>UMojW[Zg0
+I]RCnf08Hhk9bl7gkoF5<11
+R2
+R0
+w1765250510
+8C:/Users/leowe/Downloads/Labs/PC6/Altera_UP_PS2_Data_In.v
+FC:/Users/leowe/Downloads/Labs/PC6/Altera_UP_PS2_Data_In.v
+R3
+R4
+r1
+!s85 0
+31
+R5
+!s107 C:/Users/leowe/Downloads/Labs/PC6/Altera_UP_PS2_Data_In.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/leowe/Downloads/Labs/PC6|C:/Users/leowe/Downloads/Labs/PC6/Altera_UP_PS2_Data_In.v|
+!i113 1
+R6
+R7
+R8
+n@altera_@u@p_@p@s2_@data_@in
+valu
+Z9 !s110 1765440849
+!i10b 1
+!s100 [AQH?bnE1YPKPXdR9IYBK0
+IbOGlY3cPIDRz0:8j_D?YB3
+R2
+R0
+w1765432674
+8C:/Users/leowe/Downloads/Labs/PC5/Submission/alu.v
+FC:/Users/leowe/Downloads/Labs/PC5/Submission/alu.v
+L0 1
+R4
+r1
+!s85 0
+31
+Z10 !s108 1765440849.000000
+!s107 C:/Users/leowe/Downloads/Labs/PC5/Submission/alu.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/leowe/Downloads/Labs/PC5/Submission|C:/Users/leowe/Downloads/Labs/PC5/Submission/alu.v|
+!i113 1
+R6
+Z11 !s92 -vlog01compat -work work +incdir+C:/Users/leowe/Downloads/Labs/PC5/Submission
+R8
+vball_motion
+R1
+!i10b 1
+!s100 Q5?6?DnZmPRlWN:NCDHVH3
+IXbdG:V@7iL<49aam_HfKi0
+R2
+R0
+w1765438048
+8C:/Users/leowe/Downloads/Labs/PC6/ball_motion.v
+FC:/Users/leowe/Downloads/Labs/PC6/ball_motion.v
+L0 1
+R4
+r1
+!s85 0
+31
+R5
+!s107 C:/Users/leowe/Downloads/Labs/PC6/ball_motion.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/leowe/Downloads/Labs/PC6|C:/Users/leowe/Downloads/Labs/PC6/ball_motion.v|
+!i113 1
+R6
+R7
+R8
+vdmem
+R1
+!i10b 1
+!s100 Zzdek2lV8HY08=ePC=43Y1
+IO7G=0S<`E7jU]_OX8gO8i1
+R2
+R0
+w1765421475
+8C:/Users/leowe/Downloads/Labs/PC6/dmem.v
+FC:/Users/leowe/Downloads/Labs/PC6/dmem.v
+L0 1
+R4
+r1
+!s85 0
+31
+R5
+!s107 C:/Users/leowe/Downloads/Labs/PC6/dmem.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/leowe/Downloads/Labs/PC6|C:/Users/leowe/Downloads/Labs/PC6/dmem.v|
+!i113 1
+R6
+R7
+R8
+vdmem_ram
+Z12 !s110 1765440851
+!i10b 1
+!s100 ?la]6jd^;89HD<XJ[H`Q]0
+IimR;79@AUQHj[LI7b?Ya]0
+R2
+R0
+w1765437259
+8C:/Users/leowe/Downloads/Labs/PC6/dmem_ram.v
+FC:/Users/leowe/Downloads/Labs/PC6/dmem_ram.v
+Z13 L0 40
+R4
+r1
+!s85 0
+31
+Z14 !s108 1765440851.000000
+!s107 C:/Users/leowe/Downloads/Labs/PC6/dmem_ram.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/leowe/Downloads/Labs/PC6|C:/Users/leowe/Downloads/Labs/PC6/dmem_ram.v|
+!i113 1
+R6
+R7
+R8
+vimem
+R9
+!i10b 1
+!s100 N6mIgl?PmOJbAcH<E<Zoa1
+I_2;zC5hWZ4lc6f`PDIKWZ3
+R2
+R0
+w1765440719
+8C:/Users/leowe/Downloads/Labs/PC6/imem.v
+FC:/Users/leowe/Downloads/Labs/PC6/imem.v
+R13
+R4
+r1
+!s85 0
+31
+R10
+!s107 C:/Users/leowe/Downloads/Labs/PC6/imem.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/leowe/Downloads/Labs/PC6|C:/Users/leowe/Downloads/Labs/PC6/imem.v|
+!i113 1
+R6
+R7
+R8
+vmy_dffe
+R9
+!i10b 1
+!s100 @^Ya9S8@]XXz<S7^78Zjj3
+I`O4`^bTn:^<Ki;URP4X7M2
+R2
+R0
+Z15 w1763497237
+8C:/Users/leowe/Downloads/Labs/PC5/Submission/my_dffe.v
+FC:/Users/leowe/Downloads/Labs/PC5/Submission/my_dffe.v
+L0 1
+R4
+r1
+!s85 0
+31
+R10
+!s107 C:/Users/leowe/Downloads/Labs/PC5/Submission/my_dffe.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/leowe/Downloads/Labs/PC5/Submission|C:/Users/leowe/Downloads/Labs/PC5/Submission/my_dffe.v|
+!i113 1
+R6
+R11
+R8
+vopcode_decode
+R9
+!i10b 1
+!s100 ldEXgPIVlMXHzTOz`dDXN0
+I>dX:JEE<FnVo7_mYBYPmB3
+R2
+R0
+w1765432382
+8C:/Users/leowe/Downloads/Labs/PC5/Submission/opcode_decode.v
+FC:/Users/leowe/Downloads/Labs/PC5/Submission/opcode_decode.v
+L0 1
+R4
+r1
+!s85 0
+31
+R10
+!s107 C:/Users/leowe/Downloads/Labs/PC5/Submission/opcode_decode.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/leowe/Downloads/Labs/PC5/Submission|C:/Users/leowe/Downloads/Labs/PC5/Submission/opcode_decode.v|
+!i113 1
+R6
+R11
+R8
+vpaddle_control
+R1
+!i10b 1
+!s100 CFSAQa7JzczCD3^PYMXAb3
+I]JF7L:Gb@P_2CeNK_QFd:3
+R2
+R0
+w1765323691
+8C:/Users/leowe/Downloads/Labs/PC6/paddle_control.v
+FC:/Users/leowe/Downloads/Labs/PC6/paddle_control.v
+L0 1
+R4
+r1
+!s85 0
+31
+R5
+!s107 C:/Users/leowe/Downloads/Labs/PC6/paddle_control.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/leowe/Downloads/Labs/PC6|C:/Users/leowe/Downloads/Labs/PC6/paddle_control.v|
+!i113 1
+R6
+R7
+R8
+vpong
+R1
+!i10b 1
+!s100 @CkC]`D7HOJmO0jRak2Zj2
+ID36>EcHnoU<g0<6oLV;?]1
+R2
+R0
+w1765436408
+8C:/Users/leowe/Downloads/Labs/PC6/pong.v
+FC:/Users/leowe/Downloads/Labs/PC6/pong.v
+L0 1
+R4
+r1
+!s85 0
+31
+R5
+!s107 C:/Users/leowe/Downloads/Labs/PC6/pong.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/leowe/Downloads/Labs/PC6|C:/Users/leowe/Downloads/Labs/PC6/pong.v|
+!i113 1
+R6
+R7
+R8
+vpong_renderer
+R1
+!i10b 1
+!s100 HL4L0gX6;EbhP`k4`<hEc2
+INbYC^Pc^8Lm8cC3OGh6_j3
+R2
+R0
+w1765421529
 8C:/Users/leowe/Downloads/Labs/PC6/pong_renderer.v
 FC:/Users/leowe/Downloads/Labs/PC6/pong_renderer.v
 L0 1
-Z3 OV;L;10.5b;63
+R4
 r1
 !s85 0
 31
-Z4 !s108 1765148009.000000
+R5
 !s107 C:/Users/leowe/Downloads/Labs/PC6/pong_renderer.v|
 !s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/leowe/Downloads/Labs/PC6|C:/Users/leowe/Downloads/Labs/PC6/pong_renderer.v|
 !i113 1
-Z5 o-vlog01compat -work work
-Z6 !s92 -vlog01compat -work work +incdir+C:/Users/leowe/Downloads/Labs/PC6
-Z7 tCvgOpt 0
-vpong_renderer_tb
-R1
+R6
+R7
+R8
+vprocessor
+R9
 !i10b 1
-!s100 QM0d_a89FglaB<X3^M4o_3
-I[I@c4@zUi[QB2IbA[0JB`0
+!s100 a0C3AS1`oI;QGWM;HV2a52
+I[da=]oi2?cK^c<?7=Q1@:0
 R2
 R0
-w1765147456
-8C:/Users/leowe/Downloads/Labs/PC6/pong_renderer_tb.v
-FC:/Users/leowe/Downloads/Labs/PC6/pong_renderer_tb.v
-L0 1
-R3
+w1765432575
+8C:/Users/leowe/Downloads/Labs/PC5/Submission/processor.v
+FC:/Users/leowe/Downloads/Labs/PC5/Submission/processor.v
+L0 50
+R4
 r1
 !s85 0
 31
-R4
-!s107 C:/Users/leowe/Downloads/Labs/PC6/pong_renderer_tb.v|
-!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/leowe/Downloads/Labs/PC6|C:/Users/leowe/Downloads/Labs/PC6/pong_renderer_tb.v|
+R10
+!s107 C:/Users/leowe/Downloads/Labs/PC5/Submission/processor.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/leowe/Downloads/Labs/PC5/Submission|C:/Users/leowe/Downloads/Labs/PC5/Submission/processor.v|
 !i113 1
-R5
+R6
+R11
+R8
+vprocessor_tb
+R12
+!i10b 1
+!s100 ECE:CUPUDD91:`A][>KMo1
+IofeS3^1Z9N?b;XeW<j0S42
+R2
+R0
+w1765437843
+8C:/Users/leowe/Downloads/Labs/PC6/processor_tb.v
+FC:/Users/leowe/Downloads/Labs/PC6/processor_tb.v
+L0 3
+R4
+r1
+!s85 0
+31
+R14
+!s107 C:/Users/leowe/Downloads/Labs/PC6/processor_tb.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/leowe/Downloads/Labs/PC6|C:/Users/leowe/Downloads/Labs/PC6/processor_tb.v|
+!i113 1
 R6
 R7
+R8
+vPS2_Controller
+R1
+!i10b 1
+!s100 SBbk<]9<EO>4gfA4Nk28g0
+I06[KbU:VTW>OnkF9``hL]2
+R2
+R0
+w1765249580
+8C:/Users/leowe/Downloads/Labs/PC6/PS2_Controller.v
+FC:/Users/leowe/Downloads/Labs/PC6/PS2_Controller.v
+L0 9
+R4
+r1
+!s85 0
+31
+R5
+!s107 C:/Users/leowe/Downloads/Labs/PC6/PS2_Controller.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/leowe/Downloads/Labs/PC6|C:/Users/leowe/Downloads/Labs/PC6/PS2_Controller.v|
+!i113 1
+R6
+R7
+R8
+n@p@s2_@controller
+vPS2_Interface
+R1
+!i10b 1
+!s100 `IoDUT3EaFejDT2AHUBkj0
+IH4Qha7;96CnS<z5DYJ0KJ0
+R2
+R0
+w1765258128
+8C:/Users/leowe/Downloads/Labs/PC6/PS2_Interface.v
+FC:/Users/leowe/Downloads/Labs/PC6/PS2_Interface.v
+L0 1
+R4
+r1
+!s85 0
+31
+R5
+!s107 C:/Users/leowe/Downloads/Labs/PC6/PS2_Interface.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/leowe/Downloads/Labs/PC6|C:/Users/leowe/Downloads/Labs/PC6/PS2_Interface.v|
+!i113 1
+R6
+R7
+R8
+n@p@s2_@interface
+vregfile
+R9
+!i10b 1
+!s100 h>fc]HVT?MXR`ZGj@i[c32
+In]b14D11Ie=<K41B:>E[P0
+R2
+R0
+R15
+8C:/Users/leowe/Downloads/Labs/PC5/Submission/regfile.v
+FC:/Users/leowe/Downloads/Labs/PC5/Submission/regfile.v
+L0 1
+R4
+r1
+!s85 0
+31
+R10
+!s107 C:/Users/leowe/Downloads/Labs/PC5/Submission/regfile.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/leowe/Downloads/Labs/PC5/Submission|C:/Users/leowe/Downloads/Labs/PC5/Submission/regfile.v|
+!i113 1
+R6
+R11
+R8
 vvga_controller
 R1
 !i10b 1
-!s100 HPE=F:laFZXM3m2`C4LYf2
-I8hKibhe47HlV^QY^m5?>L3
+!s100 HgzlK3>GQCD3^J47lN2C80
+Ijnd1c80EgCEVO7:jMhBA<1
 R2
 R0
-w1765146996
+w1765421489
 8C:/Users/leowe/Downloads/Labs/PC6/vga_controller.v
 FC:/Users/leowe/Downloads/Labs/PC6/vga_controller.v
 L0 1
-R3
+R4
 r1
 !s85 0
 31
-R4
+R5
 !s107 C:/Users/leowe/Downloads/Labs/PC6/vga_controller.v|
 !s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/leowe/Downloads/Labs/PC6|C:/Users/leowe/Downloads/Labs/PC6/vga_controller.v|
 !i113 1
-R5
 R6
 R7
+R8
 vvideo_sync_generator
 R1
 !i10b 1
@@ -81,18 +415,18 @@ R1
 IbWH`S=nF>7:WX=_bfHRlG0
 R2
 R0
-w1765144664
+w1765163729
 8C:/Users/leowe/Downloads/Labs/PC6/video_sync_generator.v
 FC:/Users/leowe/Downloads/Labs/PC6/video_sync_generator.v
 L0 1
-R3
+R4
 r1
 !s85 0
 31
-R4
+R5
 !s107 C:/Users/leowe/Downloads/Labs/PC6/video_sync_generator.v|
 !s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/leowe/Downloads/Labs/PC6|C:/Users/leowe/Downloads/Labs/PC6/video_sync_generator.v|
 !i113 1
-R5
 R6
 R7
+R8

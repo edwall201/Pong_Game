@@ -1,0 +1,172 @@
+`timescale 1ns/1ps
+
+module processor_tb;
+
+    // Clock and reset
+    reg clock;
+    reg reset;
+
+    // Wires to/from processor
+    wire [11:0] address_imem;
+    wire [31:0] q_imem;
+
+    wire [11:0] address_dmem;
+    wire [31:0] data_to_dmem;
+    wire        wren;
+    wire [31:0] q_dmem;
+
+    wire        ctrl_writeEnable;
+    wire [4:0]  ctrl_writeReg, ctrl_readRegA, ctrl_readRegB;
+    wire [31:0] data_writeReg, data_readRegA, data_readRegB;
+
+    // Extra wires from dmem
+    wire [9:0]  ball_x, ball_y;
+    wire [31:0] ball_vx, ball_vy;
+    reg         game_tick_pulse;
+
+    // For paddle inputs (not relevant, just tie to constants)
+    reg  [9:0] paddleL_y_in;
+    reg  [9:0] paddleR_y_in;
+
+    // -------------------------------
+    // Instantiate the processor
+    // -------------------------------
+    processor uut (
+        .clock          (clock),
+        .reset          (reset),
+
+        // Imem
+        .address_imem   (address_imem),
+        .q_imem         (q_imem),
+
+        // Dmem
+        .address_dmem   (address_dmem),
+        .data           (data_to_dmem),
+        .wren           (wren),
+        .q_dmem         (q_dmem),
+
+        // Regfile
+        .ctrl_writeEnable (ctrl_writeEnable),
+        .ctrl_writeReg    (ctrl_writeReg),
+        .ctrl_readRegA    (ctrl_readRegA),
+        .ctrl_readRegB    (ctrl_readRegB),
+        .data_writeReg    (data_writeReg),
+        .data_readRegA    (data_readRegA),
+        .data_readRegB    (data_readRegB)
+    );
+
+    // -------------------------------
+    // Simple behavioral IMEM
+    // -------------------------------
+    reg [31:0] imem_array [0:4095];
+
+    // Combinational read
+    assign q_imem = imem_array[address_imem];
+
+    initial begin
+        integer i;
+        for (i = 0; i < 4096; i = i + 1)
+            imem_array[i] = 32'h00000000;  // default NOP
+
+        // Put your test program here (replace 32'hXXXXXXXX with real encodings)
+        // 0: addi $1, $0, 200      # x = 200
+        imem_array[0] = 32'hXXXXXXXX;
+
+        // 1: sw   $1, 2048($0)     # ball_x = 200
+        imem_array[1] = 32'hXXXXXXXX;
+
+        // 2: addi $2, $0, 2        # step = 2
+        imem_array[2] = 32'hXXXXXXXX;
+
+        // 3: add  $1, $1, $2       # x = x + step
+        imem_array[3] = 32'hXXXXXXXX;
+
+        // 4: sw   $1, 2048($0)
+        imem_array[4] = 32'hXXXXXXXX;
+
+        // 5: j    3
+        imem_array[5] = 32'hXXXXXXXX;
+    end
+
+    // -------------------------------
+    // Simple behavioral REGFILE
+    // (you can also instantiate your own regfile module here instead)
+    // -------------------------------
+    reg [31:0] regfile_array [0:31];
+
+    // Combinational read ports
+    assign data_readRegA = regfile_array[ctrl_readRegA];
+    assign data_readRegB = regfile_array[ctrl_readRegB];
+
+    // Synchronous write
+    always @(posedge clock) begin
+        if (ctrl_writeEnable && ctrl_writeReg != 5'd0)
+            regfile_array[ctrl_writeReg] <= data_writeReg;
+    end
+
+    // -------------------------------
+    // Instantiate DMEM (your MMIO version)
+    // -------------------------------
+    dmem dmem_u (
+        .clock          (clock),
+        .address        (address_dmem),
+        .data           (data_to_dmem),
+        .wren           (wren),
+        .q              (q_dmem),
+
+        .ball_x         (ball_x),
+        .ball_y         (ball_y),
+        .ball_vx        (ball_vx),
+        .ball_vy        (ball_vy),
+
+        .game_tick_pulse(game_tick_pulse),
+
+        .paddleL_y_in   (paddleL_y_in),
+        .paddleR_y_in   (paddleR_y_in)
+    );
+
+    // -------------------------------
+    // Clock and reset generation
+    // -------------------------------
+    initial begin
+        clock = 0;
+        forever #5 clock = ~clock;   // 100 MHz sim clock (period 10ns)
+    end
+
+    initial begin
+        reset = 1;
+        game_tick_pulse = 0;
+        paddleL_y_in = 10'd100;
+        paddleR_y_in = 10'd200;
+
+        // Initialize regfile to 0
+        integer k;
+        for (k = 0; k < 32; k = k + 1)
+            regfile_array[k] = 32'd0;
+
+        #20;        // wait a bit
+        reset = 0;  // release reset
+
+        // Optionally generate some fake game ticks if you decide to use them later
+        // forever begin
+        //     #100 game_tick_pulse = 1;
+        //     #10  game_tick_pulse = 0;
+        // end
+    end
+
+    // -------------------------------
+    // Monitor / debug prints
+    // -------------------------------
+    integer cycle = 0;
+    always @(posedge clock) begin
+        cycle = cycle + 1;
+        $display("cycle=%0d PC=%0d addr_dmem=%0d wren=%b data=%0d ball_x=%0d",
+                 cycle, address_imem, address_dmem, wren, data_to_dmem, ball_x);
+
+        if (cycle > 200) begin
+            $display("Finished after 200 cycles.");
+            $finish;
+        end
+    end
+
+endmodule
