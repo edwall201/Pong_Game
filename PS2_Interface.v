@@ -8,21 +8,57 @@ module PS2_Interface(inclock, resetn, ps2_clock, ps2_data, ps2_key_data, ps2_key
 
 	// Internal Registers
 	reg			[7:0]	last_data_received;	
-	
+
+	// Keep ps2_key_data and ps2_key_pressed driven by the PS2_Controller instance outputs.
+	// They are declared as outputs of this module and connected below.
+
+	// PS2_Controller instance wires (these are the module outputs mapped directly)
+	wire [7:0] ps2_key_data_w;
+	wire       ps2_key_pressed_w;
+
+	// Expose the wires to module outputs
+	assign ps2_key_data    = ps2_key_data_w;
+	assign ps2_key_pressed = ps2_key_pressed_w;
+
+	// ascii_out holds the ASCII code that will be presented to the LCD 
+	// IDK this words or not lol
+	reg [7:0] ascii_out;
+
 	always @(posedge inclock)
 	begin
-		if (resetn == 1'b0)
-			last_data_received <= 8'h00;
-		else if (ps2_key_pressed == 1'b1)
-			last_data_received <= ps2_key_data;
+		if (resetn == 1'b0) begin
+			last_data_received <= 8'h20; // space by default
+			ascii_out <= 8'h20;
+		end
+		else begin
+			// When a key event occurs (ps2_key_pressed_w == 1), ps2_key_data_w contains the scancode.
+			// Convert scancode to ASCII for the 4 keys we care about. or it would show space
+			if (ps2_key_pressed_w == 1'b1) begin
+				case (ps2_key_data_w)
+					8'h1D: ascii_out <= 8'd87; // W -> ASCII 'W' (87 decimal)
+					8'h1B: ascii_out <= 8'd83; // S -> ASCII 'S' (83 decimal)
+					8'h43: ascii_out <= 8'd73; // I -> ASCII 'I' (73 decimal)
+					8'h42: ascii_out <= 8'd75; // K -> ASCII 'K' (75 decimal)
+					default: ascii_out <= 8'h20; // not mapped -> space
+				endcase
+				// update last_data_received so top-level skeleton (ps2_out) sees ASCII
+				last_data_received <= ascii_out;
+			end
+			else begin
+				// Optionally keep previously displayed or set to space when no press.
+				last_data_received <= ascii_out;
+				//if we want to show space when we're not pressing then change to last_data_received <= 8'h20
+			end
+		end
 	end
-	
-	PS2_Controller PS2 (.CLOCK_50 			(inclock),
-						.reset 				(~resetn),
-						.PS2_CLK			(ps2_clock),
-						.PS2_DAT			(ps2_data),		
-						.received_data		(ps2_key_data),
-						.received_data_en	(ps2_key_pressed)
-						);
+
+	PS2_Controller PS2 (
+		.CLOCK_50 			(inclock),
+		.reset 				(~resetn),
+		.PS2_CLK			(ps2_clock),
+		.PS2_DAT			(ps2_data),		
+		.received_data		(ps2_key_data_w),
+		.received_data_en	(ps2_key_pressed_w)
+		);
 
 endmodule
